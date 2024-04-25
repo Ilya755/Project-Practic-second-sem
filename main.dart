@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:url_launcher/url_launcher.dart';
 
 void main() {
   runApp(MyApp());
@@ -25,6 +26,14 @@ class HomePage extends StatelessWidget {
   bool click_button_9_state = false;
   bool click_button_10_state = false;
 
+  _launchURL(String url) async {
+    if (await canLaunch(url)) {
+      await launch(url);
+    } else {
+      throw 'Не удается открыть ссайт';
+    }
+  }
+
 
   @override
   Widget build(BuildContext context) {
@@ -40,9 +49,10 @@ class HomePage extends StatelessWidget {
                   ),
       ),
       body: Stack(
-          children: [
-            ListView(
-            // padding: EdgeInsets.all(50),
+        fit: StackFit.expand,
+        children: [
+          Center(
+            child: ListView(
             padding: EdgeInsets.symmetric(vertical: 80.0, horizontal: 15.0),
             shrinkWrap: true,
             children: [
@@ -66,6 +76,7 @@ class HomePage extends StatelessWidget {
                 ),
                 onPressed: (){
                   click_button_1_state = true;
+                  _launchURL('https://mephi.ru');
                   // ToDo гиперссылка на офф сайт
                 },
                 style: ButtonStyle(
@@ -127,7 +138,7 @@ class HomePage extends StatelessWidget {
                     Icon(Icons.newspaper),
                     SizedBox(width: 8),
                     Text(
-                      'Новостной канал ИИКС от студента',
+                      'Новости ИИКС',
                         style: TextStyle(
                             fontFamily: 'Times New Roman',
                             fontSize: 16,
@@ -139,6 +150,7 @@ class HomePage extends StatelessWidget {
                 ),
                 onPressed: (){
                   click_button_3_state = true;
+                  _launchURL('https://t.me/icisnews');
                 // ToDo перекидывание в канал при нажатии /
                   // показ постов, которые мы выгрузили
                 },
@@ -164,7 +176,7 @@ class HomePage extends StatelessWidget {
                       Icon(Icons.newspaper),
                       SizedBox(width: 8),
                       Text(
-                        'Новостной канал ИНТЭЛ от студента',
+                        'Новости ИНТЭЛ',
                         style: TextStyle(
                             fontFamily:  'Times New Roman',
                             fontSize: 16,
@@ -176,6 +188,7 @@ class HomePage extends StatelessWidget {
                 ),
                 onPressed: (){
                   click_button_4_state = true;
+                  _launchURL('https://t.me/NESPINEWS23');
                   // ToDo перекидывание в канал при нажатии /
                   // показ постов, которые мы выгрузили
                 },
@@ -238,7 +251,7 @@ class HomePage extends StatelessWidget {
                       Icon(Icons.person),
                       SizedBox(width: 8),
                       Text(
-                        'Минифутбольный клуб МИФИ',
+                        'Реактор',
                         style: TextStyle(
                             fontFamily: 'Times New Roman',
                             fontSize: 16,
@@ -274,7 +287,7 @@ class HomePage extends StatelessWidget {
                       Icon(Icons.person),
                       SizedBox(width: 8),
                       Text(
-                        'Реактор',
+                        'Минифутбольный клуб МИФИ',
                         style: TextStyle(
                             fontFamily: 'Times New Roman',
                             fontSize: 16,
@@ -286,6 +299,7 @@ class HomePage extends StatelessWidget {
                 ),
                 onPressed: (){
                   click_button_7_state = true;
+                  _launchURL('https://t.me/mfcmephi');
                   // ToDo рассказ про их деятельность, ссылки на их ресурсы
                 },
                 style: ButtonStyle(
@@ -410,15 +424,16 @@ class HomePage extends StatelessWidget {
                 ),
               ),
             ],
-        ),
-            Positioned(
-            bottom: 0,
+          ),
+          ),
+          Positioned(
+            bottom: 10,
             right: 10,
             child: Image.asset(
               'assets/mephi_logo.png',
               width: 60,
               height: 60,
-              ),
+            ),
           ),
         ],
       ),
