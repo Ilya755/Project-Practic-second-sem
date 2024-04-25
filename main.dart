@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:methist/mephi_info.dart';
 import 'package:url_launcher/url_launcher.dart';
+import 'add_page.dart';
 
 void main() {
   runApp(MyApp());
@@ -26,9 +28,9 @@ class HomePage extends StatelessWidget {
   bool click_button_9_state = false;
   bool click_button_10_state = false;
 
-  _launchURL(String url) async {
-    if (await canLaunch(url)) {
-      await launch(url);
+  _launchUrl(String Url) async {
+    if (await canLaunch(Url)) {
+      await launch(Url);
     } else {
       throw 'Не удается открыть ссайт';
     }
@@ -76,7 +78,19 @@ class HomePage extends StatelessWidget {
                 ),
                 onPressed: (){
                   click_button_1_state = true;
-                  _launchURL('https://mephi.ru');
+
+                  // _launchUrl('https://mephi.ru');
+
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                      builder: (context) => AddPage(
+                        ResourceName: 'Оффициальный сайт МИФИ',
+                        Description: 'abracadabra',
+                        Url: 'https://mephi.ru',
+                      ),
+                    ),
+                  );
                   // ToDo гиперссылка на офф сайт
                 },
                 style: ButtonStyle(
@@ -113,6 +127,22 @@ class HomePage extends StatelessWidget {
                 ),
                 onPressed: (){
                   click_button_2_state = true;
+
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                      builder: (context) => MephiInfoPage(
+                          ResourceName: 'Полезно знать про МИФИ',
+                          Url1: 'https://mephi.ru', // ToDo добавить действительный URL
+                          ButtonText1: 'какие же ахуенные институты',
+                          TextBelowButton1: 'текст с сайта 1',
+                          Url2: 'https://mephi.ru', // ToDo добавить действительный URL
+                          ButtonText2: 'какие же невъебенные факультеты',
+                          TextBelowButton2: 'текст с сайта 2'
+                      ),
+                    ),
+                  );
+
                   // ToDo тоже список, в который пишем сслыки на разные ресурсы МИФИ,
                   //  приводим список кафедр, факультетов и т.д.
                 },
@@ -150,7 +180,18 @@ class HomePage extends StatelessWidget {
                 ),
                 onPressed: (){
                   click_button_3_state = true;
-                  _launchURL('https://t.me/icisnews');
+
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                      builder: (context) => AddPage(
+                        ResourceName: 'Телеграм канал ИИКС',
+                        Description: 'abracadabra2',
+                        Url: 'https://t.me/icisnews',
+                      ),
+                    ),
+                  );
+                  // _launchUrl('https://t.me/icisnews');
                 // ToDo перекидывание в канал при нажатии /
                   // показ постов, которые мы выгрузили
                 },
@@ -188,7 +229,19 @@ class HomePage extends StatelessWidget {
                 ),
                 onPressed: (){
                   click_button_4_state = true;
-                  _launchURL('https://t.me/NESPINEWS23');
+
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                      builder: (context) => AddPage(
+                        ResourceName: 'Телеграм канал ИНТЭЛ',
+                        Description: 'abracadabra3',
+                        Url: 'https://t.me/NESPINEWS23',
+                      ),
+                    ),
+                  );
+
+                  // _launchUrl('https://t.me/NESPINEWS23');
                   // ToDo перекидывание в канал при нажатии /
                   // показ постов, которые мы выгрузили
                 },
@@ -244,7 +297,7 @@ class HomePage extends StatelessWidget {
               ),
               Divider(),
 
-              // МФК МИФИ
+              // Реактор, который про спорт в унике
               ElevatedButton(
                 child: Row(
                     children: [
@@ -263,7 +316,19 @@ class HomePage extends StatelessWidget {
                 ),
                 onPressed: (){
                   click_button_6_state = true;
-                  // ToDo краткая история клуба, ссылка на канал
+
+                  // Navigator.push(
+                  //   context,
+                  //   MaterialPageRoute(
+                  //     builder: (context) => AddPage(
+                  //       ResourceName: 'Реактор',
+                  //       Description: 'abracadabra4',
+                  //       Url: '',
+                  //     ),
+                  //   ),
+                  // );
+                  // ToDo рассказ про их деятельность, ссылки на их ресурсы
+
                 },
                 style: ButtonStyle(
                   backgroundColor: MaterialStateProperty.resolveWith<Color>(
@@ -280,7 +345,7 @@ class HomePage extends StatelessWidget {
               ),
               Divider(),
 
-              // Реактор, который про спорт в унике
+              // МФК МИФИ
               ElevatedButton(
                 child: Row(
                     children: [
@@ -299,8 +364,20 @@ class HomePage extends StatelessWidget {
                 ),
                 onPressed: (){
                   click_button_7_state = true;
-                  _launchURL('https://t.me/mfcmephi');
-                  // ToDo рассказ про их деятельность, ссылки на их ресурсы
+
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                      builder: (context) => AddPage(
+                        ResourceName: 'МФК МИФИ',
+                        Description: 'abracadabra5',
+                        Url: 'https://t.me/mfcmephi',
+                      ),
+                    ),
+                  );
+
+                  // _launchUrl('https://t.me/mfcmephi');
+                  // ToDo краткая история клуба, ссылка на канал
                 },
                 style: ButtonStyle(
                   backgroundColor: MaterialStateProperty.resolveWith<Color>(
@@ -324,7 +401,7 @@ class HomePage extends StatelessWidget {
                       Icon(Icons.person),
                       SizedBox(width: 8),
                       Text(
-                        'Преподаватели',
+                        'Клуб любителей английского',
                         style: TextStyle(
                             fontFamily: 'Times New Roman',
                             fontSize: 16,
@@ -360,7 +437,7 @@ class HomePage extends StatelessWidget {
                       Icon(Icons.feedback),
                       SizedBox(width: 8),
                       Text(
-                        'Написать отзыв о преподавателе',
+                        'Написать отзыв о преподавателе\n(гугл форма)',
                         style: TextStyle(
                             fontFamily: 'Times New Roman',
                             fontSize: 16,
@@ -396,7 +473,7 @@ class HomePage extends StatelessWidget {
                       Icon(Icons.thumb_down),
                       SizedBox(width: 8),
                       Text(
-                        'Критика и предложения',
+                        'Критика и предложения(гугл форма)',
                         style: TextStyle(
                             fontFamily: 'Times New Roman',
                             fontSize: 16,
@@ -440,3 +517,7 @@ class HomePage extends StatelessWidget {
     );
   }
 }
+
+// class AddButton extends StatelessWidget {
+//
+// }
