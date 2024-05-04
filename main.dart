@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:methist/mephi_info.dart';
 import 'package:url_launcher/url_launcher.dart';
 import 'add_page.dart';
+import 'dart:async';
 
 void main() {
   runApp(MyApp());
@@ -27,6 +28,46 @@ class HomePage extends StatelessWidget {
   bool click_button_8_state = false;
   bool click_button_9_state = false;
   bool click_button_10_state = false;
+
+  StartTimer(int index) {
+    Timer(Duration(seconds: 5), () {
+      switch (index) {
+        case 1:
+          click_button_1_state = false;
+          break;
+        case 2:
+          click_button_2_state = false;
+          break;
+        case 3:
+          click_button_3_state = false;
+          break;
+        case 4:
+          click_button_4_state = false;
+          break;
+        case 5:
+          click_button_5_state = false;
+          break;
+        case 6:
+          click_button_6_state = false;
+          break;
+        case 7:
+          click_button_7_state = false;
+          break;
+        case 8:
+          click_button_8_state = false;
+          break;
+        case 9:
+          click_button_9_state = false;
+          break;
+        case 10:
+          click_button_10_state = false;
+          break;
+        default:
+          break;
+      }
+    });
+  }
+
 
   _launchUrl(String Url) async {
     if (await canLaunch(Url)) {
@@ -79,8 +120,6 @@ class HomePage extends StatelessWidget {
                 onPressed: (){
                   click_button_1_state = true;
 
-                  // _launchUrl('https://mephi.ru');
-
                   Navigator.push(
                     context,
                     MaterialPageRoute(
@@ -91,7 +130,6 @@ class HomePage extends StatelessWidget {
                       ),
                     ),
                   );
-                  // ToDo гиперссылка на офф сайт
                 },
                 style: ButtonStyle(
                   backgroundColor: MaterialStateProperty.resolveWith<Color>(
@@ -134,10 +172,10 @@ class HomePage extends StatelessWidget {
                       builder: (context) => MephiInfoPage(
                           ResourceName: 'Полезно знать про МИФИ',
                           Url1: 'https://mephi.ru', // ToDo добавить действительный URL
-                          ButtonText1: 'какие же ахуенные институты',
+                          ButtonText1: 'институты',
                           TextBelowButton1: 'текст с сайта 1',
                           Url2: 'https://mephi.ru', // ToDo добавить действительный URL
-                          ButtonText2: 'какие же невъебенные факультеты',
+                          ButtonText2: 'факультеты',
                           TextBelowButton2: 'текст с сайта 2'
                       ),
                     ),
@@ -191,9 +229,6 @@ class HomePage extends StatelessWidget {
                       ),
                     ),
                   );
-                  // _launchUrl('https://t.me/icisnews');
-                // ToDo перекидывание в канал при нажатии /
-                  // показ постов, которые мы выгрузили
                 },
                 style: ButtonStyle(
                   backgroundColor: MaterialStateProperty.resolveWith<Color>(
@@ -240,10 +275,6 @@ class HomePage extends StatelessWidget {
                       ),
                     ),
                   );
-
-                  // _launchUrl('https://t.me/NESPINEWS23');
-                  // ToDo перекидывание в канал при нажатии /
-                  // показ постов, которые мы выгрузили
                 },
                 style: ButtonStyle(
                   backgroundColor: MaterialStateProperty.resolveWith<Color>(
@@ -376,7 +407,6 @@ class HomePage extends StatelessWidget {
                     ),
                   );
 
-                  // _launchUrl('https://t.me/mfcmephi');
                   // ToDo краткая история клуба, ссылка на канал
                 },
                 style: ButtonStyle(
@@ -517,7 +547,3 @@ class HomePage extends StatelessWidget {
     );
   }
 }
-
-// class AddButton extends StatelessWidget {
-//
-// }
