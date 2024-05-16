@@ -109,7 +109,7 @@ class _HomePageState extends State<HomePage> {
                           context,
                           MaterialPageRoute(
                             builder: (context) => AddPage(
-                              resourceName: 'Оффициальный сайт МИФИ',
+                              resourceName: 'Сайт МИФИ',
                               description: 'abracadabra',
                               url: 'https://mephi.ru',
                             ),
