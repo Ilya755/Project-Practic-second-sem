@@ -18,55 +18,39 @@ class MyApp extends StatelessWidget {
   }
 }
 
-class HomePage extends StatelessWidget {
-  bool click_button_1_state = false;
-  bool click_button_2_state = false;
-  bool click_button_3_state = false;
-  bool click_button_4_state = false;
-  bool click_button_5_state = false;
-  bool click_button_6_state = false;
-  bool click_button_7_state = false;
-  bool click_button_8_state = false;
-  bool click_button_9_state = false;
-  bool click_button_10_state = false;
+class HomePage extends StatefulWidget {
+  @override
+  _HomePageState createState() => _HomePageState();
+}
 
-  StartTimer(int index) {
-    Timer(Duration(seconds: 5), () {
-      switch (index) {
-        case 1:
-          click_button_1_state = false;
-          break;
-        case 2:
-          click_button_2_state = false;
-          break;
-        case 3:
-          click_button_3_state = false;
-          break;
-        case 4:
-          click_button_4_state = false;
-          break;
-        case 5:
-          click_button_5_state = false;
-          break;
-        case 6:
-          click_button_6_state = false;
-          break;
-        case 7:
-          click_button_7_state = false;
-          break;
-        case 8:
-          click_button_8_state = false;
-          break;
-        case 9:
-          click_button_9_state = false;
-          break;
-        case 10:
-          click_button_10_state = false;
-          break;
-        default:
-          break;
-      }
+class _HomePageState extends State<HomePage> {
+  List<bool> clickButtonStates = List.generate(10, (_) => false);
+  List<Color?> buttonColors = [
+    Colors.cyanAccent[400],
+    Colors.cyanAccent[400],
+    Colors.cyanAccent[400],
+    Colors.cyanAccent[400],
+    Colors.yellow[600],
+    Colors.yellow[600],
+    Colors.yellow[600],
+    Colors.yellow[600],
+    Colors.white,
+    Colors.white
+  ];
+
+  void startTimer(int index) {
+    Timer(Duration(seconds: 10), () {
+      setState(() {
+        clickButtonStates[index] = false;
+      });
     });
+  }
+
+  void handleButtonPress(int index) {
+    setState(() {
+      clickButtonStates[index] = true;
+    });
+    startTimer(index);
   }
 
   _launchUrl(String Url) async {
@@ -90,430 +74,433 @@ class HomePage extends StatelessWidget {
         ),
       ),
       body: Stack(
-        fit: StackFit.expand,
         children: [
-          Center(
-            child: ListView(
-              padding: EdgeInsets.symmetric(vertical: 80.0, horizontal: 15.0),
-              shrinkWrap: true,
-              children: [
-                // МИФИ
-                ElevatedButton(
-                  child: Row(
+          SingleChildScrollView(
+        // fit: StackFit.expand,
+            child: Padding(
+              // [
+              // Center(
+              //   child: ListView(
+                  padding: EdgeInsets.symmetric(vertical: 80.0, horizontal: 15.0),
+                  // shrinkWrap: true,
+                  child: Column(
                     children: [
-                      Icon(Icons.book),
-                      SizedBox(width: 8),
-                      Text(
-                        'Оффициальный сайт МИФИ',
-                        style: TextStyle(
-                          fontFamily: 'Times New Roman',
-                          fontSize: 16,
-                          color: Colors.black,
-                          fontWeight: FontWeight.bold,
-                        ),
+                    // МИФИ
+                    ElevatedButton(
+                      child: Row(
+                        children: [
+                          Icon(Icons.book),
+                          SizedBox(width: 8),
+                          Text(
+                            'Оффициальный сайт МИФИ',
+                            style: TextStyle(
+                              fontFamily: 'Times New Roman',
+                              fontSize: 16,
+                              color: Colors.black,
+                              fontWeight: FontWeight.bold,
+                            ),
+                          ),
+                        ],
                       ),
-                    ],
-                  ),
-                  onPressed: () {
-                    click_button_1_state = true;
+                      onPressed: () {
+                        handleButtonPress(0);
 
-                    Navigator.push(
-                      context,
-                      MaterialPageRoute(
-                        builder: (context) => AddPage(
-                          resourceName: 'Оффициальный сайт МИФИ',
-                          description: 'abracadabra',
-                          url: 'https://mephi.ru',
-                        ),
-                      ),
-                    );
-                  },
-                  style: ButtonStyle(
-                    backgroundColor: MaterialStateProperty.resolveWith<Color>(
-                          (Set<MaterialState> states) {
-                        if (click_button_1_state) {
-                          return Colors.greenAccent;
-                        } else {
-                          return Colors.cyanAccent[400]!;
-                        }
+                        Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                            builder: (context) => AddPage(
+                              resourceName: 'Оффициальный сайт МИФИ',
+                              description: 'abracadabra',
+                              url: 'https://mephi.ru',
+                            ),
+                          ),
+                        );
                       },
+                      style: ButtonStyle(
+                        backgroundColor: MaterialStateProperty.resolveWith<Color>(
+                              (Set<MaterialState> states) {
+                            if (clickButtonStates[0]) {
+                              return Colors.greenAccent;
+                            } else {
+                              return Colors.cyanAccent[400]!;
+                            }
+                          },
+                        ),
+                      ),
                     ),
-                  ),
-                ),
-                Divider(),
+                    Divider(),
 
-                // О МИФИ
-                ElevatedButton(
-                  child: Row(
-                    children: [
-                      Icon(Icons.book),
-                      SizedBox(width: 8),
-                      Text(
-                        'Полезно знать про МИФИ',
-                        style: TextStyle(
-                          fontFamily: 'Times New Roman',
-                          fontSize: 16,
-                          color: Colors.black,
-                          fontWeight: FontWeight.bold,
-                        ),
+                    // О МИФИ
+                    ElevatedButton(
+                      child: Row(
+                        children: [
+                          Icon(Icons.book),
+                          SizedBox(width: 8),
+                          Text(
+                            'Полезно знать про МИФИ',
+                            style: TextStyle(
+                              fontFamily: 'Times New Roman',
+                              fontSize: 16,
+                              color: Colors.black,
+                              fontWeight: FontWeight.bold,
+                            ),
+                          ),
+                        ],
                       ),
-                    ],
-                  ),
-                  onPressed: () {
-                    click_button_2_state = true;
+                      onPressed: () {
+                        handleButtonPress(1);
 
-                    Navigator.push(
-                      context,
-                      MaterialPageRoute(
-                        builder: (context) => MephiInfoPage(
-                          ResourceName: 'Полезно знать про МИФИ',
-                          Url1: 'https://mephi.ru', // ToDo добавить действительный URL
-                          ButtonText1: 'институты',
-                          TextBelowButton1: 'текст с сайта 1',
-                          Url2: 'https://mephi.ru', // ToDo добавить действительный URL
-                          ButtonText2: 'факультеты',
-                          TextBelowButton2: 'текст с сайта 2',
-                        ),
-                      ),
-                    );
-                  },
-                  style: ButtonStyle(
-                    backgroundColor: MaterialStateProperty.resolveWith<Color>(
-                          (Set<MaterialState> states) {
-                        if (click_button_2_state) {
-                          return Colors.greenAccent;
-                        } else {
-                          return Colors.cyanAccent[400]!;
-                        }
+                        Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                            builder: (context) => MephiInfoPage(
+                              ResourceName: 'Полезно знать про МИФИ',
+                              Url1: 'https://mephi.ru', // ToDo добавить действительный URL
+                              ButtonText1: 'институты',
+                              TextBelowButton1: 'текст с сайта 1',
+                              Url2: 'https://mephi.ru', // ToDo добавить действительный URL
+                              ButtonText2: 'факультеты',
+                              TextBelowButton2: 'текст с сайта 2',
+                            ),
+                          ),
+                        );
                       },
+                      style: ButtonStyle(
+                        backgroundColor: MaterialStateProperty.resolveWith<Color>(
+                              (Set<MaterialState> states) {
+                            if (clickButtonStates[1]) {
+                              return Colors.greenAccent;
+                            } else {
+                              return Colors.cyanAccent[400]!;
+                            }
+                          },
+                        ),
+                      ),
                     ),
-                  ),
-                ),
-                Divider(),
+                    Divider(),
 
-                // ИИКС
-                ElevatedButton(
-                  child: Row(
-                    children: [
-                      Icon(Icons.newspaper),
-                      SizedBox(width: 8),
-                      Text(
-                        'Новости ИИКС',
-                        style: TextStyle(
-                          fontFamily: 'Times New Roman',
-                          fontSize: 16,
-                          color: Colors.black,
-                          fontWeight: FontWeight.bold,
-                        ),
+                    // ИИКС
+                    ElevatedButton(
+                      child: Row(
+                        children: [
+                          Icon(Icons.newspaper),
+                          SizedBox(width: 8),
+                          Text(
+                            'Новости ИИКС',
+                            style: TextStyle(
+                              fontFamily: 'Times New Roman',
+                              fontSize: 16,
+                              color: Colors.black,
+                              fontWeight: FontWeight.bold,
+                            ),
+                          ),
+                        ],
                       ),
-                    ],
-                  ),
-                  onPressed: () {
-                    click_button_3_state = true;
+                      onPressed: () {
+                        handleButtonPress(2);
 
-                    Navigator.push(
-                      context,
-                      MaterialPageRoute(
-                        builder: (context) => AddPage(
-                          resourceName: 'Телеграм канал ИИКС',
-                          description: 'abracadabra2',
-                          url: 'https://t.me/icisnews',
-                        ),
-                      ),
-                    );
-                  },
-                  style: ButtonStyle(
-                    backgroundColor: MaterialStateProperty.resolveWith<Color>(
-                          (Set<MaterialState> states) {
-                        if (click_button_3_state) {
-                          return Colors.greenAccent;
-                        } else {
-                          return Colors.cyanAccent[400]!;
-                        }
+                        Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                            builder: (context) => AddPage(
+                              resourceName: 'Телеграм канал ИИКС',
+                              description: 'abracadabra2',
+                              url: 'https://t.me/icisnews',
+                            ),
+                          ),
+                        );
                       },
+                      style: ButtonStyle(
+                        backgroundColor: MaterialStateProperty.resolveWith<Color>(
+                              (Set<MaterialState> states) {
+                            if (clickButtonStates[2]) {
+                              return Colors.greenAccent;
+                            } else {
+                              return Colors.cyanAccent[400]!;
+                            }
+                          },
+                        ),
+                      ),
                     ),
-                  ),
-                ),
-                Divider(),
+                    Divider(),
 
-                // ИНТЭЛ
-                ElevatedButton(
-                  child: Row(
-                    children: [
-                      Icon(Icons.newspaper),
-                      SizedBox(width: 8),
-                      Text(
-                        'Новости ИНТЭЛ',
-                        style: TextStyle(
-                          fontFamily: 'Times New Roman',
-                          fontSize: 16,
-                          color: Colors.black,
-                          fontWeight: FontWeight.bold,
-                        ),
+                    // ИНТЭЛ
+                    ElevatedButton(
+                      child: Row(
+                        children: [
+                          Icon(Icons.newspaper),
+                          SizedBox(width: 8),
+                          Text(
+                            'Новости ИНТЭЛ',
+                            style: TextStyle(
+                              fontFamily: 'Times New Roman',
+                              fontSize: 16,
+                              color: Colors.black,
+                              fontWeight: FontWeight.bold,
+                            ),
+                          ),
+                        ],
                       ),
-                    ],
-                  ),
-                  onPressed: () {
-                    click_button_4_state = true;
+                      onPressed: () {
+                        handleButtonPress(3);
 
-                    Navigator.push(
-                      context,
-                      MaterialPageRoute(
-                        builder: (context) => AddPage(
-                          resourceName: 'Телеграм канал ИНТЭЛ',
-                          description: 'abracadabra3',
-                          url: 'https://t.me/NESPINEWS23',
-                        ),
-                      ),
-                    );
-                  },
-                  style: ButtonStyle(
-                    backgroundColor: MaterialStateProperty.resolveWith<Color>(
-                          (Set<MaterialState> states) {
-                        if (click_button_4_state) {
-                          return Colors.greenAccent;
-                        } else {
-                          return Colors.cyanAccent[400]!;
-                        }
+                        Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                            builder: (context) => AddPage(
+                              resourceName: 'Телеграм канал ИНТЭЛ',
+                              description: 'abracadabra3',
+                              url: 'https://t.me/NESPINEWS23',
+                            ),
+                          ),
+                        );
                       },
-                    ),
-                  ),
-                ),
-                Divider(),
-
-                // Преподы
-                ElevatedButton(
-                  child: Row(
-                    children: [
-                      Icon(Icons.person),
-                      SizedBox(width: 8),
-                      Text(
-                        'Преподаватели',
-                        style: TextStyle(
-                          fontFamily: 'Times New Roman',
-                          fontSize: 16,
-                          color: Colors.black,
-                          fontWeight: FontWeight.bold,
+                      style: ButtonStyle(
+                        backgroundColor: MaterialStateProperty.resolveWith<Color>(
+                              (Set<MaterialState> states) {
+                            if (clickButtonStates[3]) {
+                              return Colors.greenAccent;
+                            } else {
+                              return Colors.cyanAccent[400]!;
+                            }
+                          },
                         ),
                       ),
-                    ],
-                  ),
-                  onPressed: () {
-                    click_button_5_state = true;
+                    ),
+                    Divider(),
 
-                    Navigator.push(
-                      context,
-                      MaterialPageRoute(
-                        builder: (context) => TeacherPage(),
+                    // Преподы
+                    ElevatedButton(
+                      child: Row(
+                        children: [
+                          Icon(Icons.person),
+                          SizedBox(width: 8),
+                          Text(
+                            'Преподаватели',
+                            style: TextStyle(
+                              fontFamily: 'Times New Roman',
+                              fontSize: 16,
+                              color: Colors.black,
+                              fontWeight: FontWeight.bold,
+                            ),
+                          ),
+                        ],
                       ),
-                    );
-                  },
-                  style: ButtonStyle(
-                    backgroundColor: MaterialStateProperty.resolveWith<Color>(
-                          (Set<MaterialState> states) {
-                        if (click_button_5_state) {
-                          return Colors.greenAccent;
-                        } else {
-                          return Colors.yellow[600]!;
-                        }
+                      onPressed: () {
+                        handleButtonPress(4);
+
+                        Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                            builder: (context) => TeacherPage(),
+                          ),
+                        );
                       },
-                    ),
-                  ),
-                ),
-                Divider(),
-
-                // Реактор, который про спорт в унике
-                ElevatedButton(
-                  child: Row(
-                    children: [
-                      Icon(Icons.person),
-                      SizedBox(width: 8),
-                      Text(
-                        'Реактор',
-                        style: TextStyle(
-                          fontFamily: 'Times New Roman',
-                          fontSize: 16,
-                          color: Colors.black,
-                          fontWeight: FontWeight.bold,
+                      style: ButtonStyle(
+                        backgroundColor: MaterialStateProperty.resolveWith<Color>(
+                              (Set<MaterialState> states) {
+                            if (clickButtonStates[4]) {
+                              return Colors.greenAccent;
+                            } else {
+                              return Colors.yellow[600]!;
+                            }
+                          },
                         ),
                       ),
-                    ],
-                  ),
-                  onPressed: () {
-                    click_button_6_state = true;
-                  },
-                  style: ButtonStyle(
-                    backgroundColor: MaterialStateProperty.resolveWith<Color>(
-                          (Set<MaterialState> states) {
-                        if (click_button_6_state) {
-                          return Colors.greenAccent;
-                        } else {
-                          return Colors.yellow[600]!;
-                        }
+                    ),
+                    Divider(),
+
+                    // Реактор, который про спорт в унике
+                    ElevatedButton(
+                      child: Row(
+                        children: [
+                          Icon(Icons.person),
+                          SizedBox(width: 8),
+                          Text(
+                            'Реактор',
+                            style: TextStyle(
+                              fontFamily: 'Times New Roman',
+                              fontSize: 16,
+                              color: Colors.black,
+                              fontWeight: FontWeight.bold,
+                            ),
+                          ),
+                        ],
+                      ),
+                      onPressed: () {
+                        handleButtonPress(5);
                       },
+                      style: ButtonStyle(
+                        backgroundColor: MaterialStateProperty.resolveWith<Color>(
+                              (Set<MaterialState> states) {
+                            if (clickButtonStates[5]) {
+                              return Colors.greenAccent;
+                            } else {
+                              return Colors.yellow[600]!;
+                            }
+                          },
+                        ),
+                      ),
                     ),
-                  ),
-                ),
-                Divider(),
+                    Divider(),
 
-                // МФК МИФИ
-                ElevatedButton(
-                  child: Row(
-                    children: [
-                      Icon(Icons.person),
-                      SizedBox(width: 8),
-                      Text(
-                        'Минифутбольный клуб МИФИ',
-                        style: TextStyle(
-                          fontFamily: 'Times New Roman',
-                          fontSize: 16,
-                          color: Colors.black,
-                          fontWeight: FontWeight.bold,
-                        ),
+                    // МФК МИФИ
+                    ElevatedButton(
+                      child: Row(
+                        children: [
+                          Icon(Icons.person),
+                          SizedBox(width: 8),
+                          Text(
+                            'Минифутбольный клуб МИФИ',
+                            style: TextStyle(
+                              fontFamily: 'Times New Roman',
+                              fontSize: 16,
+                              color: Colors.black,
+                              fontWeight: FontWeight.bold,
+                            ),
+                          ),
+                        ],
                       ),
-                    ],
-                  ),
-                  onPressed: () {
-                    click_button_7_state = true;
+                      onPressed: () {
+                        handleButtonPress(6);
 
-                    Navigator.push(
-                      context,
-                      MaterialPageRoute(
-                        builder: (context) => AddPage(
-                          resourceName: 'МФК МИФИ',
-                          description: 'abracadabra5',
-                          url: 'https://t.me/mfcmephi',
-                        ),
-                      ),
-                    );
-                  },
-                  style: ButtonStyle(
-                    backgroundColor: MaterialStateProperty.resolveWith<Color>(
-                          (Set<MaterialState> states) {
-                        if (click_button_7_state) {
-                          return Colors.greenAccent;
-                        } else {
-                          return Colors.yellow[600]!;
-                        }
+                        Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                            builder: (context) => AddPage(
+                              resourceName: 'МФК МИФИ',
+                              description: 'abracadabra5',
+                              url: 'https://t.me/mfcmephi',
+                            ),
+                          ),
+                        );
                       },
-                    ),
-                  ),
-                ),
-                Divider(),
-
-                // Клуб любителей английского
-                ElevatedButton(
-                  child: Row(
-                    children: [
-                      Icon(Icons.person),
-                      SizedBox(width: 8),
-                      Text(
-                        'Клуб любителей английского',
-                        style: TextStyle(
-                          fontFamily: 'Times New Roman',
-                          fontSize: 16,
-                          color: Colors.black,
-                          fontWeight: FontWeight.bold,
+                      style: ButtonStyle(
+                        backgroundColor: MaterialStateProperty.resolveWith<Color>(
+                              (Set<MaterialState> states) {
+                            if (clickButtonStates[6]) {
+                              return Colors.greenAccent;
+                            } else {
+                              return Colors.yellow[600]!;
+                            }
+                          },
                         ),
                       ),
-                    ],
-                  ),
-                  onPressed: () {
-                    click_button_8_state = true;
-                  },
-                  style: ButtonStyle(
-                    backgroundColor: MaterialStateProperty.resolveWith<Color>(
-                          (Set<MaterialState> states) {
-                        if (click_button_8_state) {
-                          return Colors.greenAccent;
-                        } else {
-                          return Colors.yellow[600]!;
-                        }
-                      },
                     ),
-                  ),
-                ),
-                Divider(),
+                    Divider(),
 
-                // Отзыв по преподу
-                ElevatedButton(
-                  child: Row(
-                    children: [
-                      Icon(Icons.feedback),
-                      SizedBox(width: 8),
-                      Text(
-                        'Написать отзыв о преподавателе\n(гугл форма)',
-                        style: TextStyle(
-                          fontFamily: 'Times New Roman',
-                          fontSize: 16,
-                          color: Colors.black,
-                          fontWeight: FontWeight.bold,
+                    // Клуб любителей английского
+                    ElevatedButton(
+                      child: Row(
+                        children: [
+                          Icon(Icons.person),
+                          SizedBox(width: 8),
+                          Text(
+                            'Клуб любителей английского',
+                            style: TextStyle(
+                              fontFamily: 'Times New Roman',
+                              fontSize: 16,
+                              color: Colors.black,
+                              fontWeight: FontWeight.bold,
+                            ),
+                          ),
+                        ],
+                      ),
+                      onPressed: () {
+                        handleButtonPress(7);
+                      },
+                      style: ButtonStyle(
+                        backgroundColor: MaterialStateProperty.resolveWith<Color>(
+                              (Set<MaterialState> states) {
+                            if (clickButtonStates[7]) {
+                              return Colors.greenAccent;
+                            } else {
+                              return Colors.yellow[600]!;
+                            }
+                          },
                         ),
                       ),
-                    ],
-                  ),
-                  onPressed: () {
-                    click_button_9_state = true;
-                  },
-                  style: ButtonStyle(
-                    backgroundColor: MaterialStateProperty.resolveWith<Color>(
-                          (Set<MaterialState> states) {
-                        if (click_button_9_state) {
-                          return Colors.greenAccent;
-                        } else {
-                          return Colors.white;
-                        }
-                      },
                     ),
-                  ),
-                ),
-                Divider(),
+                    Divider(),
 
-                // Критика и предложения
-                ElevatedButton(
-                  child: Row(
-                    children: [
-                      Icon(Icons.thumb_down),
-                      SizedBox(width: 8),
-                      Text(
-                        'Критика и предложения(гугл форма)',
-                        style: TextStyle(
-                          fontFamily: 'Times New Roman',
-                          fontSize: 16,
-                          color: Colors.black,
-                          fontWeight: FontWeight.bold,
+                    // Отзыв по преподу
+                    ElevatedButton(
+                      child: Row(
+                        children: [
+                          Icon(Icons.feedback),
+                          SizedBox(width: 8),
+                          Text(
+                            'Написать отзыв о преподавателе\n(гугл форма)',
+                            style: TextStyle(
+                              fontFamily: 'Times New Roman',
+                              fontSize: 16,
+                              color: Colors.black,
+                              fontWeight: FontWeight.bold,
+                            ),
+                          ),
+                        ],
+                      ),
+                      onPressed: () {
+                        handleButtonPress(8);
+                      },
+                      style: ButtonStyle(
+                        backgroundColor: MaterialStateProperty.resolveWith<Color>(
+                              (Set<MaterialState> states) {
+                            if (clickButtonStates[8]) {
+                              return Colors.greenAccent;
+                            } else {
+                              return Colors.white;
+                            }
+                          },
                         ),
                       ),
-                    ],
-                  ),
-                  onPressed: () {
-                    click_button_10_state = true;
-                  },
-                  style: ButtonStyle(
-                    backgroundColor: MaterialStateProperty.resolveWith<Color>(
-                          (Set<MaterialState> states) {
-                        if (click_button_10_state) {
-                          return Colors.greenAccent;
-                        } else {
-                          return Colors.white;
-                        }
-                      },
                     ),
-                  ),
+                    Divider(),
+
+                    // Критика и предложения
+                    ElevatedButton(
+                      child: Row(
+                        children: [
+                          Icon(Icons.thumb_down),
+                          SizedBox(width: 8),
+                          Text(
+                            'Критика и предложения\n(гугл форма)',
+                            style: TextStyle(
+                              fontFamily: 'Times New Roman',
+                              fontSize: 16,
+                              color: Colors.black,
+                              fontWeight: FontWeight.bold,
+                            ),
+                          ),
+                        ],
+                      ),
+                      onPressed: () {
+                        handleButtonPress(9);
+                      },
+                      style: ButtonStyle(
+                        backgroundColor: MaterialStateProperty.resolveWith<Color>(
+                              (Set<MaterialState> states) {
+                            if (clickButtonStates[9]) {
+                              return Colors.greenAccent;
+                            } else {
+                              return Colors.white;
+                            }
+                          },
+                        ),
+                      ),
+                    ),
+                  ],
                 ),
-              ],
-            ),
+              ),
           ),
-          Positioned(
-            bottom: 10,
-            right: 10,
-            child: Image.asset(
-              'assets/mephi_logo.png',
-              width: 60,
-              height: 60,
-            ),
-          ),
-        ],
+      Positioned(
+        bottom: 10,
+        right: 10,
+        child: Image.asset(
+          'assets/mephi_logo.png',
+          width: 60,
+          height: 60,
+        ),
       ),
     );
   }
