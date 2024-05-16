@@ -81,7 +81,7 @@ class _HomePageState extends State<HomePage> {
               // [
               // Center(
               //   child: ListView(
-                  padding: EdgeInsets.symmetric(vertical: 80.0, horizontal: 15.0),
+                  padding: EdgeInsets.symmetric(vertical: 30.0, horizontal: 15.0),
                   // shrinkWrap: true,
                   child: Column(
                     children: [
@@ -492,8 +492,19 @@ class _HomePageState extends State<HomePage> {
                   ],
                 ),
               ),
-          ),
-      Positioned(
+            ),
+          // Positioned(
+          //   bottom: 10,
+          //   right: 10,
+          //   child: Image.asset(
+          //     'assets/mephi_logo.png',
+          //     width: 60,
+          //     height: 60,
+          //   ),
+          // ),
+        ],
+      ),
+      floatingActionButton: Positioned(
         bottom: 10,
         right: 10,
         child: Image.asset(
