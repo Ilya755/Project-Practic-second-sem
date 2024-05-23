@@ -1,8 +1,10 @@
 import 'package:flutter/material.dart';
 import 'teacher_page.dart';
+import 'package:firebase_core/firebase_core.dart';
+import 'auth_screen.dart';
+import 'package:provider/provider.dart';
 import 'add_page.dart';
 import 'mephi_info.dart';
-import 'package:url_launcher/url_launcher.dart';
 import 'dart:async';
 
 void main() {
@@ -51,14 +53,6 @@ class _HomePageState extends State<HomePage> {
       clickButtonStates[index] = true;
     });
     startTimer(index);
-  }
-
-  _launchUrl(String Url) async {
-    if (await canLaunch(Url)) {
-      await launch(Url);
-    } else {
-      throw 'Не удается открыть сайт';
-    }
   }
 
   @override
@@ -156,10 +150,10 @@ class _HomePageState extends State<HomePage> {
                             builder: (context) => MephiInfoPage(
                               ResourceName: 'Полезно знать про МИФИ',
                               Url1: 'https://mephi.ru', // ToDo добавить действительный URL
-                              ButtonText1: 'институты',
+                              ButtonText1: 'Институты',
                               TextBelowButton1: 'текст с сайта 1',
                               Url2: 'https://mephi.ru', // ToDo добавить действительный URL
-                              ButtonText2: 'факультеты',
+                              ButtonText2: 'Факультеты',
                               TextBelowButton2: 'текст с сайта 2',
                             ),
                           ),
@@ -369,7 +363,15 @@ class _HomePageState extends State<HomePage> {
                           MaterialPageRoute(
                             builder: (context) => AddPage(
                               resourceName: 'МФК МИФИ',
-                              description: 'abracadabra5',
+                              description: 'Помимо Реактора, который освещает '
+                                  'все спортивные мероприятие, происходящие в университете, '
+                                  'в МИФИ совсем недавно появился ТГ канал сборной команды '
+                                  'по мини футболу, в котором вы можете найти актуальную '
+                                  'информацию об играх команды(на которые вы можете придти и '
+                                  'поддержать ребят из родного ВУЗа). Также в канале освещаются '
+                                  'жизнь и тренировки сборной, проводится различный интерактив.'
+                                  '\n\nПодписывайтесь, чтобы быть в курсе всех событий, '
+                                  'парни будут рады каждому новому подписчику!',
                               url: 'https://t.me/mfcmephi',
                             ),
                           ),
