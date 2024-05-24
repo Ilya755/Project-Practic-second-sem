@@ -102,7 +102,18 @@ class _HomePageState extends State<HomePage> {
                           MaterialPageRoute(
                             builder: (context) => AddPage(
                               resourceName: 'Сайт МИФИ',
-                              description: 'abracadabra',
+                              description: 'Уважаемые посетители! \n'
+                              'Приветствуем вас в приложении МИФИСТ 2.0.! \n'
+                              'Пока что это лишь пробная версия приложения, но мы будем развиваться, '
+                                  'для того, чтобы предоставить вам весь нужный функционал :) \n\n'
+                              'Здесь вы найдете:\n'
+
+                              '\tИнформацию о вузе, образовательных программах, студенческой жизни.\n'
+                              '\tУдобный поиск, меню разделов и карту сайта.\n'
+                              '\tПравила приема, подачу заявки, стипендии, общежития, внеучебную деятельность.\n'
+                              '\tНаучные направления, публикации, конференции.\n'
+                              '\tКонтакты для связи, вопросы, предложения, отзывы.\n\n'
+                              'Надеемся, наш сайт станет вашим помощником!',
                               url: 'https://mephi.ru',
                             ),
                           ),
@@ -129,7 +140,7 @@ class _HomePageState extends State<HomePage> {
                           Icon(Icons.book),
                           SizedBox(width: 8),
                           Text(
-                            'Полезно знать про МИФИ',
+                            'Абитуриентам',
                             style: TextStyle(
                               fontFamily: 'Times New Roman',
                               fontSize: 16,
@@ -147,12 +158,12 @@ class _HomePageState extends State<HomePage> {
                           MaterialPageRoute(
                             builder: (context) => MephiInfoPage(
                               ResourceName: 'Полезно знать про МИФИ',
-                              Url1: 'https://mephi.ru', // ToDo добавить действительный URL
-                              ButtonText1: 'Институты',
-                              TextBelowButton1: 'текст с сайта 1',
-                              Url2: 'https://mephi.ru', // ToDo добавить действительный URL
+                              Url1: 'https://admission2022.mephi.ru/admission/baccalaureate-and-specialty',
+                              ButtonText1: 'Приемная комиссия',
+                              TextBelowButton1: 'Здесь вы можете подробно ознакомиться с процессом подачи документов в приемную комиссию',
+                              Url2: 'https://mephi.ru/about/cae',
                               ButtonText2: 'Факультеты',
-                              TextBelowButton2: 'текст с сайта 2',
+                              TextBelowButton2: 'Здесь вы можете подробнее ознакомиться со всеми факультетами',
                             ),
                           ),
                         );
@@ -196,7 +207,8 @@ class _HomePageState extends State<HomePage> {
                           MaterialPageRoute(
                             builder: (context) => AddPage(
                               resourceName: 'Телеграм канал ИИКС',
-                              description: 'abracadabra2',
+                              description: 'Здесь вы можете ознакомиться с институтом ИИКС '
+                              'перейдя в их tg канал',
                               url: 'https://t.me/icisnews',
                             ),
                           ),
@@ -241,7 +253,8 @@ class _HomePageState extends State<HomePage> {
                           MaterialPageRoute(
                             builder: (context) => AddPage(
                               resourceName: 'Телеграм канал ИНТЭЛ',
-                              description: 'abracadabra3',
+                              description: 'Здесь вы можете ознакомиться с институтом ИНТЭЛ '
+                              'перейдя в их tg канал',
                               url: 'https://t.me/NESPINEWS23',
                             ),
                           ),
