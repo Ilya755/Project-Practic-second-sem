@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'teacher_page.dart';
+import 'review_form_page.dart';
 import 'add_page.dart';
 import 'mephi_info.dart';
 import 'dart:async';
@@ -441,6 +442,7 @@ class _HomePageState extends State<HomePage> {
                       ),
                       onPressed: () {
                         handleButtonPress(8);
+                        redirectToGoogleFormTeachers();
                       },
                       style: ButtonStyle(
                         backgroundColor: MaterialStateProperty.resolveWith<Color>(
@@ -475,6 +477,7 @@ class _HomePageState extends State<HomePage> {
                       ),
                       onPressed: () {
                         handleButtonPress(9);
+                        redirectToGoogleFormFeedback();
                       },
                       style: ButtonStyle(
                         backgroundColor: MaterialStateProperty.resolveWith<Color>(
