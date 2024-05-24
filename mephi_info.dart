@@ -41,7 +41,7 @@ class MephiInfoPage extends StatelessWidget {
           ),
         ),
       ),
-      body: Padding(
+      body: SingleChildScrollView(
         padding: const EdgeInsets.all(16.0),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
@@ -88,7 +88,7 @@ class MephiInfoPage extends StatelessWidget {
                     style: TextStyle(fontSize: 16, color: Colors.white),
                   ),
                 ),
-              ]
+              ],
             ),
             SizedBox(height: 20),
             Text(
@@ -133,7 +133,7 @@ class MephiInfoPage extends StatelessWidget {
                   ),
                 ),
                 SizedBox(height: 10),
-              ]
+              ],
             ),
           ],
         ),
