@@ -1,8 +1,5 @@
 import 'package:flutter/material.dart';
 import 'teacher_page.dart';
-import 'package:firebase_core/firebase_core.dart';
-import 'auth_screen.dart';
-import 'package:provider/provider.dart';
 import 'add_page.dart';
 import 'mephi_info.dart';
 import 'dart:async';
