@@ -28,57 +28,53 @@ class _TeacherDetailPageState extends State<TeacherDetailPage> {
   }
 
   List<Widget> _buildReviewList(List<String> reviews) {
-    final highlightWords = ['Лекции', 'Семинары', 'Дополнительно'];
+    final highlightWords = ['Лекции:', 'Семинары:', 'Дополнительно:'];
 
     return reviews.expand((review) {
       return review.split(RegExp(r'\n{2,}')).expand((subReview) {
         return subReview.split('\n').map((line) {
           if (line.trim().isEmpty) return Container();
-          final textSpans = _buildTextSpans(line, highlightWords);
-          return Padding(
-            padding: const EdgeInsets.symmetric(vertical: 4.0),
-            child: RichText(
-              text: TextSpan(children: [
-                if (!subReview.startsWith(line)) // Добавляем точку только перед строками, не обернутыми в \n\n
-                  TextSpan(
-                    text: '• ',
-                    style: TextStyle(color: Colors.black, fontWeight: FontWeight.bold),
+
+          bool isHighlight = highlightWords.any((word) => line.trim() == word);
+          if (isHighlight) {
+            return Padding(
+              padding: const EdgeInsets.symmetric(vertical: 4.0),
+              child: RichText(
+                text: TextSpan(
+                  text: line,
+                  style: TextStyle(
+                    fontWeight: FontWeight.bold,
+                    decoration: TextDecoration.underline,
+                    color: Colors.black,
                   ),
-                ...textSpans,
-              ]),
-            ),
-          );
+                ),
+              ),
+            );
+          } else {
+            return Padding(
+              padding: const EdgeInsets.symmetric(vertical: 4.0),
+              child: RichText(
+                text: TextSpan(
+                  children: [
+                    TextSpan(
+                      text: '• ',
+                      style: TextStyle(
+                        color: Colors.black,
+                        fontWeight: FontWeight.bold,
+                      ),
+                    ),
+                    TextSpan(
+                      text: line,
+                      style: TextStyle(color: Colors.black),
+                    ),
+                  ],
+                ),
+              ),
+            );
+          }
         }).toList();
       }).toList();
     }).toList();
-  }
-
-  List<TextSpan> _buildTextSpans(String text, List<String> highlightWords) {
-    List<TextSpan> spans = [];
-    int start = 0;
-
-    for (final word in highlightWords) {
-      final index = text.indexOf(word, start);
-      if (index != -1) {
-        if (index > start) {
-          spans.add(TextSpan(text: text.substring(start, index)));
-        }
-        spans.add(TextSpan(
-          text: word,
-          style: TextStyle(
-            fontWeight: FontWeight.bold,
-            decoration: TextDecoration.underline,
-          ),
-        ));
-        start = index + word.length;
-      }
-    }
-
-    if (start < text.length) {
-      spans.add(TextSpan(text: text.substring(start)));
-    }
-
-    return spans;
   }
 
   @override
