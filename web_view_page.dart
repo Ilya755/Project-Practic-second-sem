@@ -5,7 +5,7 @@ import 'package:url_launcher/url_launcher.dart';
 class WebViewPage extends StatefulWidget {
   final String url;
 
-  WebViewPage({required this.url});
+  WebViewPage({super.key, required this.url});
 
   @override
   _WebViewPageState createState() => _WebViewPageState();
@@ -18,10 +18,10 @@ class _WebViewPageState extends State<WebViewPage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('Web View'),
+        title: const Text('Web View'),
         actions: [
           IconButton(
-            icon: Icon(Icons.open_in_browser),
+            icon: const Icon(Icons.open_in_browser),
             onPressed: () async {
               if (await canLaunch(widget.url)) {
                 await launch(widget.url);

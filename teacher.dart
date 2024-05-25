@@ -1,25 +1,31 @@
 class Teacher {
-  int id;
-  String name;
-  String review;
-  double rating;
-  String textbookPath;
+  final int id;
+  final String name;
+  final double rating;
+  final List<String> reviews;
+  final Map<String, List<String>> materials;
 
   Teacher({
     required this.id,
     required this.name,
-    required this.review,
     required this.rating,
-    required this.textbookPath,
+    required this.reviews,
+    required this.materials,
   });
+}
 
-  Map<String, dynamic> toMap() {
-    return {
-      'id': id,
-      'name': name,
-      'review': review,
-      'rating': rating,
-      'textbookPath': textbookPath,
-    };
-  }
+Teacher createTeacher({
+  required int id,
+  required String name,
+  required double rating,
+  required List<String> reviews,
+  required Map<String, List<String>> materials,
+}) {
+  return Teacher(
+    id: id,
+    name: name,
+    rating: rating,
+    reviews: reviews,
+    materials: materials,
+  );
 }

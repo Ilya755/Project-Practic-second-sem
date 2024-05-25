@@ -65,61 +65,63 @@ class AddPage extends StatelessWidget {
       appBar: AppBar(
         title: Text(resourceName),
       ),
-      body: Padding(
-        padding: const EdgeInsets.all(16.0),
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            Text(
-              description,
-              style: TextStyle(fontSize: 16),
-            ),
-            SizedBox(height: 20),
-            Column(
-              crossAxisAlignment: CrossAxisAlignment.stretch,
-              children: [
-                ElevatedButton(
-                  onPressed: () {
-                    Navigator.push(
-                      context,
-                      MaterialPageRoute(
-                        builder: (context) => WebViewPage(
-                          url: url,
-                          resourceName: resourceName,
+      body: SingleChildScrollView(
+        child: Padding(
+          padding: const EdgeInsets.all(16.0),
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              Text(
+                description,
+                style: TextStyle(fontSize: 16),
+              ),
+              SizedBox(height: 20),
+              Column(
+                crossAxisAlignment: CrossAxisAlignment.stretch,
+                children: [
+                  ElevatedButton(
+                    onPressed: () {
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                          builder: (context) => WebViewPage(
+                            url: url,
+                            resourceName: resourceName,
+                          ),
                         ),
-                      ),
-                    );
-                  },
-                  style: ButtonStyle(
-                    backgroundColor: MaterialStateProperty.all(Theme.of(context).primaryColor),
-                    padding: MaterialStateProperty.all(EdgeInsets.symmetric(vertical: 12)),
+                      );
+                    },
+                    style: ButtonStyle(
+                      backgroundColor: MaterialStateProperty.all(Theme.of(context).primaryColor),
+                      padding: MaterialStateProperty.all(EdgeInsets.symmetric(vertical: 12)),
+                    ),
+                    child: Text(
+                      'Открыть в приложении',
+                      style: TextStyle(fontSize: 16, color: Colors.white),
+                    ),
                   ),
-                  child: Text(
-                    'Открыть в приложении',
-                    style: TextStyle(fontSize: 16, color: Colors.white),
+                  SizedBox(height: 10),
+                  ElevatedButton(
+                    onPressed: () async {
+                      if (await canLaunch(url)) {
+                        await launch(url);
+                      } else {
+                        throw 'Не удалось открыть $url';
+                      }
+                    },
+                    style: ButtonStyle(
+                      backgroundColor: MaterialStateProperty.all(Colors.blue),
+                      padding: MaterialStateProperty.all(EdgeInsets.symmetric(vertical: 12)),
+                    ),
+                    child: Text(
+                      'Открыть в браузере',
+                      style: TextStyle(fontSize: 16, color: Colors.white),
+                    ),
                   ),
-                ),
-                SizedBox(height: 10),
-                ElevatedButton(
-                  onPressed: () async {
-                    if (await canLaunch(url)) {
-                      await launch(url);
-                    } else {
-                      throw 'Не удалось открыть $url';
-                    }
-                  },
-                  style: ButtonStyle(
-                    backgroundColor: MaterialStateProperty.all(Colors.blue),
-                    padding: MaterialStateProperty.all(EdgeInsets.symmetric(vertical: 12)),
-                  ),
-                  child: Text(
-                    'Открыть в браузере',
-                    style: TextStyle(fontSize: 16, color: Colors.white),
-                  ),
-                ),
-              ],
-            ),
-          ],
+                ],
+              ),
+            ],
+          ),
         ),
       ),
     );

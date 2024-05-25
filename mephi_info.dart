@@ -72,7 +72,7 @@ class MephiInfoPage extends StatelessWidget {
                     padding: MaterialStateProperty.all(EdgeInsets.symmetric(vertical: 12)),
                   ),
                   child: Text(
-                    ButtonText1 + ' (открыть в приложении)',
+                    '    ' + ButtonText1 + (ButtonText1 == 'Приёмная комиссия' ? '\n(открыть в приложении)' : ' (открыть в приложении)'),
                     style: TextStyle(fontSize: 16, color: Colors.white),
                   ),
                 ),
@@ -84,7 +84,7 @@ class MephiInfoPage extends StatelessWidget {
                     padding: MaterialStateProperty.all(EdgeInsets.symmetric(vertical: 12)),
                   ),
                   child: Text(
-                    ButtonText1 + ' (открыть в браузере)',
+                      ButtonText1 + ' (открыть в браузере)',
                     style: TextStyle(fontSize: 16, color: Colors.white),
                   ),
                 ),
