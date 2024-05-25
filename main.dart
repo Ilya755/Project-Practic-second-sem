@@ -64,6 +64,7 @@ class _HomePageState extends State<HomePage> {
             color: Colors.black,
           ),
         ),
+        centerTitle: true,
       ),
       body: SingleChildScrollView(
         child: Padding(
