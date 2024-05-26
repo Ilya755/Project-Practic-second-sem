@@ -64,7 +64,6 @@ class _HomePageState extends State<HomePage> {
             color: Colors.black,
           ),
         ),
-        centerTitle: true,
       ),
       body: SingleChildScrollView(
         child: Padding(
@@ -78,7 +77,7 @@ class _HomePageState extends State<HomePage> {
                     Icon(Icons.book),
                     SizedBox(width: 8),
                     Text(
-                      'Оффициальный сайт МИФИ',
+                      'Официальный сайт МИФИ',
                       style: TextStyle(
                         fontFamily: 'Times New Roman',
                         fontSize: 16,
